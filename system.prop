@@ -4,6 +4,7 @@ ro.charger.enable_suspend=1
 # Display
 debug.sf.enable_hwc_vds=1
 debug.sf.latch_unsignaled=1
+qemu.sf.lcd_density=400
 
 # Media
 ro.media.recorder-max-base-layer-fps=60
