@@ -7,6 +7,9 @@
 BOARD_VENDOR := hmd
 DEVICE_PATH := device/hmd/BGT_sprout
 
+# APEX
+DEXPREOPT_GENERATE_APEX_IMAGE := true
+
 # Architecture
 TARGET_ARCH := arm64
 TARGET_ARCH_VARIANT := armv8-a
