@@ -261,6 +261,11 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(BGT_PREBUILT)/kernel/dtb.img:dtb.img
 
+# Keylayout
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/keylayout/uinput-fpc.kl:$(TARGET_COPY_OUT_SYSTEM)/usr/keylayout/uinput-fpc.kl \
+    $(LOCAL_PATH)/keylayout/lito-lagoonqrd-snd-card_Button_Jack.kl:$(TARGET_COPY_OUT_SYSTEM)/usr/keylayout/lito-lagoonqrd-snd-card_Button_Jack.kl
+
 # Lights
 PRODUCT_PACKAGES += \
     android.hardware.light@2.0-service.hmd_BGT_sprout
