@@ -7,6 +7,8 @@
 DEVICE_PATH := device/hmd/BGT_sprout
 BGT_PREBUILT := device/hmd/BGT_sprout-prebuilt
 
+BUILD_BROKEN_DUP_RULES := true
+
 # Architecture
 TARGET_ARCH := arm64
 TARGET_ARCH_VARIANT := armv8-a
