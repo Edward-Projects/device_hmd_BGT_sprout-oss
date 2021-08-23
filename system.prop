@@ -1,0 +1,16 @@
+# Charger
+ro.charger.enable_suspend=1
+
+# Display
+debug.sf.enable_hwc_vds=1
+debug.sf.latch_unsignaled=1
+
+# Media
+ro.media.recorder-max-base-layer-fps=60
+
+# RIL
+ril.subscription.types=NV,RUIM
+ro.telephony.default_network=26,26
+
+# Vendor
+ro.vendor.qti.va_aosp.support=1
