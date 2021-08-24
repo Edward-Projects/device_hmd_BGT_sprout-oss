@@ -370,7 +370,7 @@ PRODUCT_PACKAGES += \
 
 # Vibrator
 PRODUCT_PACKAGES += \
-    vendor.qti.hardware.vibrator.service
+    vendor.qti.hardware.vibrator.service.hmd_BGT_sprout
 
 # WiFi
 PRODUCT_PACKAGES += \
