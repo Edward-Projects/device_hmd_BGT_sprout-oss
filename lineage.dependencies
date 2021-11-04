@@ -1,0 +1,6 @@
+[
+  {
+    "repository": "android_kernel_hmd_sm7250",
+    "target_path": "kernel/hmd/sm7250"
+  }
+]
