@@ -8,8 +8,8 @@
 
 set -e
 
-DEVICE=**** FILL IN DEVICE NAME ****
-VENDOR=**** FILL IN VENDOR NAME ****
+DEVICE=BGT_sprout
+VENDOR=hmd
 
 # Load extract_utils and do some sanity checks
 MY_DIR="${BASH_SOURCE%/*}"
