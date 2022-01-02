@@ -1,4 +1,4 @@
-# Copyright (c) 2009-2012, 2014-2021, The Linux Foundation. All rights reserved.
+# Copyright (c) 2009-2012, 2014-2020, The Linux Foundation. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -25,11 +25,10 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
-import /vendor/etc/init/hw/init.qti.ufs.rc
 import /vendor/etc/init/hw/init.qcom.usb.rc
-import /vendor/etc/init/hw/init.qcom.test.rc
 import /vendor/etc/init/hw/init.target.rc
 import /vendor/etc/init/hw/init.qcom.factory.rc
+import /vendor/etc/init/hw/init.qcom.test.rc
 
 on early-init
     mount debugfs debugfs /sys/kernel/debug
@@ -75,7 +74,6 @@ on init
     write /sys/fs/cgroup/memory/bg/memory.swappiness 140
     write /sys/fs/cgroup/memory/bg/memory.move_charge_at_immigrate 1
     chown root system /sys/fs/cgroup/memory/bg/tasks
-    write /sys/kernel/icnss/wpss_boot 1
     chmod 0660 /sys/fs/cgroup/memory/bg/tasks
 
 on post-fs
@@ -95,16 +93,6 @@ on early-boot
 
     chown system system /mnt/vendor/persist/data/pfm/licenses
     chmod 0775 /mnt/vendor/persist/data/pfm/licenses
-    chown system system /mnt/vendor/persist/data/pfm/licenses/store_0
-    chmod 0664 /mnt/vendor/persist/data/pfm/licenses/store_0
-    chown system system /mnt/vendor/persist/data/pfm/licenses/store_1
-    chmod 0664 /mnt/vendor/persist/data/pfm/licenses/store_1
-    chown system system /mnt/vendor/persist/data/pfm/licenses/store_2
-    chmod 0664 /mnt/vendor/persist/data/pfm/licenses/store_2
-    chown system system /mnt/vendor/persist/data/pfm/licenses/store_3
-    chmod 0664 /mnt/vendor/persist/data/pfm/licenses/store_3
-    chown system system /mnt/vendor/persist/data/pfm/licenses/store_4
-    chmod 0664 /mnt/vendor/persist/data/pfm/licenses/store_4
 
 on boot
     chown bluetooth bluetooth /sys/module/bluetooth_power/parameters/power
@@ -146,13 +134,17 @@ on boot
     chmod 2770 /dev/socket/qmux_radio
 
     mkdir /persist/drm 0770 system system
-    mkdir /persist/bluetooth 0770 bluetooth bluetooth
+    mkdir /mnt/vendor/persist/bluetooth 0770 bluetooth bluetooth
     mkdir /persist/misc 0770 system system
     mkdir /persist/alarm 0770 system system
     mkdir /mnt/vendor/persist/time 0770 system system
     mkdir /mnt/vendor/persist/secnvm 0770 system system
     mkdir /mnt/vendor/persist/iar_db 0770 system system
     mkdir /mnt/vendor/spunvm 0770 system system
+
+    # NHK_GROOT for elableinfo partition add by chenwan at 20200407 start
+    mkdir /mnt/vendor/elableinfo 0770 root system
+    # NHK_GROOT for elableinfo partition add by chenwan at 20200407 end
 
     #Create WIGIG socket area
     mkdir /dev/socket/wigig 0770 wifi wifi
@@ -177,9 +169,9 @@ on boot
     # an ack packet comes out of order
     write /proc/sys/net/netfilter/nf_conntrack_tcp_be_liberal 1
 
-    # Set the console loglevel to < KERN_WARN
+    # Set the console loglevel to < KERN_INFO
     # Set the default message loglevel to KERN_INFO
-    write /proc/sys/kernel/printk "4 6 1 7"
+    write /proc/sys/kernel/printk "6 6 1 7"
 
     # Allow access for CCID command/response timeout configuration
     chown system system /sys/module/ccid_bridge/parameters/bulk_msg_timeout
@@ -196,6 +188,9 @@ on boot
     chmod 0660 /dev/block/bootdevice/by-name/ramdump
     chown root system /sys/kernel/dload/dload_mode
     chmod 0660 /sys/kernel/dload/dload_mode
+    chown root system /sys/kernel/dload/dload_enable
+    chmod 0660 /sys/kernel/dload/dload_enable
+
 
     chown system system /sys/class/backlight/panel0-backlight/brightness
     chown system system /sys/class/backlight/panel0-backlight/max_brightness
@@ -220,6 +215,9 @@ on boot
     # Create vpp directory
     mkdir /mnt/vendor/persist/vpp 0770 media media
 
+    # Allow access to Double Tap to Wake gesture node
+    chown system system /proc/ilitek/gesture
+    chmod 0664 /proc/ilitek/gesture
 
     # Create hvdcp_opti directory
     mkdir /mnt/vendor/persist/hvdcp_opti 0770 root system
@@ -239,9 +237,6 @@ on post-fs-data
 
     # Change lm related dirs
     mkdir /data/vendor/lm 0700 root root
-
-    # Create directory used by powermodule
-    mkdir /data/vendor/pwr 0700 root root
 
     # Create directory used by media clients
     mkdir /data/vendor/media 0770 mediacodec media
@@ -299,6 +294,12 @@ on post-fs-data
     # We chown/chmod /persist again so because mount is run as root + defaults
     chown root system /persist
     chmod 0771 /persist
+
+    # NHK_GROOT for elableinfo partition add by chenwan at 20200407 start
+    chown root system /mnt/vendor/elableinfo
+    chmod 0771 /mnt/vendor/elableinfo
+    # NHK_GROOT for elableinfo partition add by chenwan at 20200407 end
+
     chown system system /persist/WCNSS_qcom_wlan_nv.bin
     chmod 0664 /sys/devices/platform/msm_sdcc.1/polling
     chmod 0664 /sys/devices/platform/msm_sdcc.2/polling
@@ -321,7 +322,6 @@ on post-fs-data
     mkdir /dev/socket/location 0770 gps gps
     mkdir /dev/socket/location/mq 0770 gps gps
     mkdir /dev/socket/location/xtra 0770 gps gps
-    mkdir /dev/socket/location/dgnss 0770 gps gps
 
     #Create directories for wifihal services
     mkdir /dev/socket/wifihal 0770 wifi wifi
@@ -427,7 +427,6 @@ service vendor.ss_ramdump /system/vendor/bin/subsystem_ramdump
     class main
     user system
     group system
-    ioprio rt 4
     disabled
 
 on property:ro.vendor.iocgrp.config=1
@@ -498,9 +497,6 @@ on property:persist.debug.trace=1
 on property:vendor.media.target.version=*
     setprop vendor.sys.media.target.version ${vendor.media.target.version}
 
-on property:vendor.netflix.bsp_rev=*
-    setprop ro.netflix.bsp_rev ${vendor.netflix.bsp_rev}
-
 on property:vendor.media.target_variant=*
     setprop ro.media.xml_variant.codecs ${vendor.media.target_variant}
     setprop ro.media.xml_variant.codecs_performance ${vendor.media.target_variant}
@@ -537,6 +533,14 @@ service qmiproxy /system/bin/qmiproxy
     group radio diag
     disabled
 
+# Adjust socket buffer to enlarge TCP receive window for high bandwidth
+# but only if ro.data.large_tcp_window_size property is set.
+on property:ro.data.large_tcp_window_size=true
+    write /proc/sys/net/ipv4/tcp_adv_win_scale  2
+
+on property:sys.sysctl.tcp_adv_win_scale=*
+    write /proc/sys/net/ipv4/tcp_adv_win_scale ${sys.sysctl.tcp_adv_win_scale}
+
 service wpa_supplicant /vendor/bin/hw/wpa_supplicant \
     -O/data/vendor/wifi/wpa/sockets -puse_p2p_group_interface=1 -dd \
     -g@android:vendor_wpa_wlan0
@@ -546,11 +550,6 @@ service wpa_supplicant /vendor/bin/hw/wpa_supplicant \
 #   group wifi inet keystore
     interface android.hardware.wifi.supplicant@1.0::ISupplicant default
     interface android.hardware.wifi.supplicant@1.1::ISupplicant default
-    interface android.hardware.wifi.supplicant@1.2::ISupplicant default
-    interface android.hardware.wifi.supplicant@1.3::ISupplicant default
-    interface vendor.qti.hardware.wifi.supplicant@2.0::ISupplicantVendor default
-    interface vendor.qti.hardware.wifi.supplicant@2.1::ISupplicantVendor default
-    interface vendor.qti.hardware.wifi.supplicant@2.2::ISupplicantVendor default
     class main
     socket vendor_wpa_wlan0 dgram 660 wifi wifi
     disabled
@@ -578,6 +577,48 @@ service vendor.move_wifi_data /system/bin/move_wifi_data.sh
     group wifi
     disabled
     oneshot
+
+#add for [HMD_GROOT_A01-007] HMD enterprise API by chenwan 20200321 start
+#//for block goto fastboot
+service vendor.fastboot.switch /system/bin/oemowninfo
+    class main
+    user system
+    group system
+    disabled
+    oneshot
+
+on property:persist.sys.hmd.block_downloadmode=0
+    start vendor.fastboot.switch
+
+on property:persist.sys.hmd.block_downloadmode=1
+    start vendor.fastboot.switch
+#add for [HMD_GROOT_A01-007] HMD enterprise API by chenwan 20200321 end
+
+
+#add for BGT-735(Device Activation) factoryreset time by zhangzhendong start
+on property:sys.hmd.factoryreset_time_flag=1
+    start vendor.fastboot.switch
+#add for BGT-735(Device Activation) factoryreset time by zhangzhendong end
+
+
+#add by chenwan for FSW-013 20200319 begin
+service enable.svi /vendor/bin/qcomsvi svi:on
+    user root
+    group root
+    disabled
+    oneshot
+
+service disable.svi /vendor/bin/qcomsvi svi:off
+    user root
+    group root
+    disabled
+    oneshot
+
+on property:persist.sys.svi.enable=1
+    start enable.svi
+
+on property:persist.sys.svi.enable=0
+    start disable.svi
 
 service wigignpt /vendor/bin/wigignpt
     interface vendor.qti.hardware.wigig.netperftuner@1.0::INetPerfTuner default
@@ -698,6 +739,25 @@ service loc_launcher /system/vendor/bin/loc_launcher
     user gps
     group gps
 
+service drmdiag /system/vendor/bin/drmdiagapp
+    class late_start
+     user root
+     disabled
+     oneshot
+
+on property:drmdiag.load=1
+    start drmdiag
+
+on property:drmdiag.load=0
+    stop drmdiag
+
+# added for save bootlog
+service save-bootlog /vendor/bin/save_bootlog.sh
+    class late_start
+    user root
+    group root system
+    oneshot
+
 service qcom-sh /vendor/bin/init.qcom.sh
     class late_start
     user root
@@ -759,6 +819,18 @@ service hostapd_fst /vendor/bin/hw/hostapd -dd -g /data/vendor/wifi/hostapd/glob
     group wifi
     disabled
     oneshot
+
+service ims_regmanager /system/vendor/bin/exe-ims-regmanagerprocessnative
+    class late_start
+    group net_bt_admin inet radio wifi
+    disabled
+
+on property:persist.ims.regmanager.mode=1
+    start ims_regmanager
+
+on property:ro.data.large_tcp_window_size=true
+    # Adjust socket buffer to enlarge TCP receive window for high bandwidth (e.g. DO-RevB)
+    write /proc/sys/net/ipv4/tcp_adv_win_scale  2
 
 service battery_monitor /system/bin/battery_monitor
     user system
@@ -822,9 +894,9 @@ on property:persist.sys.qlogd=0
     stop qlogd
 
 service vm_bms /vendor/bin/vm_bms
-    class main
     user root
-    group system wakelock
+    group root
+    disabled
 
 service vendor.msm_irqbalance /vendor/bin/msm_irqbalance -f /system/vendor/etc/msm_irqbalance.conf
     class core
@@ -881,6 +953,17 @@ service poweroffhandler /system/vendor/bin/poweroffhandler
     group graphics audio
     disabled
     oneshot
+
+# Logcat dump daemon, dumps logs to logdump partition
+service logdumpd /system/bin/logcat -b all -v threadtime -D -w /dev/block/bootdevice/by-name/logdump
+    class core
+    writepid /dev/cpuset/system-background/tasks
+    seclabel u:r:logdumpd:s0
+    disabled
+
+# Logdumpd is enabled only for userdebug non-perf build
+on property:ro.logdumpd.enabled=1
+    start logdumpd
 
 service time_daemon /vendor/bin/time_daemon
     class main
@@ -942,3 +1025,30 @@ service vendor.audio-hal /vendor/bin/hw/android.hardware.audio.service
     ioprio rt 4
     writepid /dev/cpuset/foreground/tasks /dev/stune/foreground/tasks
     onrestart restart audioserver
+
+on property:persist.vendor.mbn.bind=1
+    start chmod-chown-mbn-sh
+
+on property:persist.vendor.mbn.bind=2
+    mount none /data/vendor/modem_config/mcfg_sw /vendor/firmware_mnt/image/modem_pr/mcfg/configs/mcfg_sw bind rec
+    setprop persist.vendor.mbn.bind 0
+
+on property:persist.vendor.mbn.modem_restart=1
+    write /sys/kernel/dload/dload_enable 0
+    write /sys/kernel/restart_modem 1
+    setprop persist.vendor.mbn.flag 1
+    setprop persist.vendor.mbn.modem_restart 0
+
+
+service chmod-chown-mbn-sh /vendor/bin/mbn_ota_customization.sh
+    class late_start
+    user root
+    group root system radio
+    oneshot
+    disabled
+
+on property:persist.radio.mbn.bind=*
+    setprop persist.vendor.mbn.bind ${persist.radio.mbn.bind}
+
+on property:persist.radio.mbn.modem_restart=*
+    setprop persist.vendor.mbn.modem_restart ${persist.radio.mbn.modem_restart}
