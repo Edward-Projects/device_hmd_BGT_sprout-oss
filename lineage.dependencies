@@ -1,0 +1,6 @@
+[
+  {
+    "repository": "android_device_hmd_BGT_sprout-prebuilt",
+    "target_path": "device/hmd/BGT_sprout-prebuilt"
+  }
+]
