@@ -2,14 +2,6 @@
 
 # ACDB
 vendor/etc/acdbdata/adsp_avs_config.acdb
-vendor/etc/acdbdata/Forte/Forte_Bluetooth_cal.acdb
-vendor/etc/acdbdata/Forte/Forte_General_cal.acdb
-vendor/etc/acdbdata/Forte/Forte_Global_cal.acdb
-vendor/etc/acdbdata/Forte/Forte_Handset_cal.acdb
-vendor/etc/acdbdata/Forte/Forte_Hdmi_cal.acdb
-vendor/etc/acdbdata/Forte/Forte_Headset_cal.acdb
-vendor/etc/acdbdata/Forte/Forte_Speaker_cal.acdb
-vendor/etc/acdbdata/Forte/Forte_workspaceFile.qwsp
 vendor/etc/acdbdata/MTP/lito-lagoonmtp-snd-card/MTP_Lagoon_Bluetooth_cal.acdb
 vendor/etc/acdbdata/MTP/lito-lagoonmtp-snd-card/MTP_Lagoon_General_cal.acdb
 vendor/etc/acdbdata/MTP/lito-lagoonmtp-snd-card/MTP_Lagoon_Global_cal.acdb
@@ -18,9 +10,6 @@ vendor/etc/acdbdata/MTP/lito-lagoonmtp-snd-card/MTP_Lagoon_Hdmi_cal.acdb
 vendor/etc/acdbdata/MTP/lito-lagoonmtp-snd-card/MTP_Lagoon_Headset_cal.acdb
 vendor/etc/acdbdata/MTP/lito-lagoonmtp-snd-card/MTP_Lagoon_Speaker_cal.acdb
 vendor/etc/acdbdata/MTP/lito-lagoonmtp-snd-card/MTP_Lagoon_workspaceFile.qwsp
-vendor/etc/acdbdata/nn_ns_models/fai__2.0.0_0.1__3.0.0_0.0__eai_1.00.pmd
-vendor/etc/acdbdata/nn_ns_models/fai__2.2.0_0.1__3.0.0_0.0__eai_1.00.pmd
-vendor/etc/acdbdata/nn_vad_models/fai_3.0.0_0.0_eai_1.00.pmd
 vendor/etc/acdbdata/QRD/lito-lagoonqrd-snd-card/QRD_Lagoon_Bluetooth_cal.acdb
 vendor/etc/acdbdata/QRD/lito-lagoonqrd-snd-card/QRD_Lagoon_General_cal.acdb
 vendor/etc/acdbdata/QRD/lito-lagoonqrd-snd-card/QRD_Lagoon_Global_cal.acdb
@@ -94,45 +83,18 @@ vendor/lib/libadm.so
 vendor/lib/libaudcal.so
 vendor/lib/libaudio_log_utils.so
 vendor/lib/libaudioconfigstore.so
-vendor/lib/libaudioroute_ext.so
 vendor/lib/libqtigef.so
 vendor/lib/libssrec.so
 vendor/lib/vendor.qti.hardware.audiohalext@1.0.so
-vendor/lib/vndk/libxlog.so
 vendor/lib64/hw/audio.primary.lito.so
 vendor/lib64/hw/vendor.qti.hardware.audiohalext@1.0-impl.so
 vendor/lib64/libadiertac.so
 vendor/lib64/libaudcal.so
 vendor/lib64/libaudio_log_utils.so
 vendor/lib64/libaudioconfigstore.so
-vendor/lib64/libaudioroute_ext.so
 vendor/lib64/libqtigef.so
 vendor/lib64/libssrec.so
 vendor/lib64/vendor.qti.hardware.audiohalext@1.0.so
-
-# Audio Amplifier
-vendor/firmware/cs35l41-delta-rcv-handset.txt
-vendor/firmware/cs35l41-delta-rcv-handsfree.txt
-vendor/firmware/cs35l41-delta-rcv-music.txt
-vendor/firmware/cs35l41-delta-spk-handsfree.txt
-vendor/firmware/cs35l41-delta-spk-music.txt
-vendor/firmware/cs35l41-dsp1-spk-cali.bin
-vendor/firmware/cs35l41-dsp1-spk-cali.wmfw
-vendor/firmware/cs35l41-dsp1-spk-prot.bin
-vendor/firmware/cs35l41-dsp1-spk-prot.wmfw
-vendor/firmware/cs35l41-revB2-delta-rcv-handset.txt
-vendor/firmware/cs35l41-revB2-delta-rcv-handsfree.txt
-vendor/firmware/cs35l41-revB2-delta-rcv-music.txt
-vendor/firmware/cs35l41-revB2-delta-spk-handsfree.txt
-vendor/firmware/cs35l41-revB2-delta-spk-music.txt
-vendor/firmware/cs35l41-revB2-dsp1-spk-cali.bin
-vendor/firmware/cs35l41-revB2-dsp1-spk-cali.wmfw
-vendor/firmware/cs35l41-revB2-dsp1-spk-prot.bin
-vendor/firmware/cs35l41-revB2-dsp1-spk-prot.wmfw
-vendor/firmware/RCV-cs35l41-dsp1-spk-cali.bin
-vendor/firmware/RCV-cs35l41-dsp1-spk-prot.bin
-vendor/firmware/RCV-cs35l41-revB2-dsp1-spk-cali.bin
-vendor/firmware/RCV-cs35l41-revB2-dsp1-spk-prot.bin
 
 # Audio FX Modules
 vendor/lib/soundfx/libasphere.so
@@ -519,11 +481,9 @@ vendor/lib64/libmmcamera_faceproc.so
 vendor/lib64/libmmcamera_faceproc2.so
 
 # Charger
-vendor/bin/batterysecret
 vendor/bin/hvdcp_opti
 vendor/bin/init.qti.chg_policy.sh
 vendor/etc/charger_fstab.qti
-vendor/etc/init/init.batterysecret.rc
 vendor/etc/init/vendor.qti.hardware.charger_monitor@1.0-service.rc
 
 # Configstore
@@ -853,11 +813,6 @@ vendor/lib/hw/fingerprint.fpc.default.so
 vendor/lib/vendor.qti.hardware.fingerprint@1.0.so
 vendor/lib64/hw/fingerprint.fpc.default.so
 vendor/lib64/vendor.qti.hardware.fingerprint@1.0.so
-vendor/lib64/hw/fingerprint.fpc.so:vendor/lib64/hw/fingerprint.fpc.lito.so
-vendor/lib64/libgoodixhwfingerprint.so
-vendor/lib64/libgf_ca.so
-vendor/lib64/libgf_hal.so
-
 
 # Firmware
 vendor/firmware/2nd-iris3.fw
@@ -1094,7 +1049,6 @@ vendor/lib64/libkeymasterutils.so
 vendor/lib64/libkeystore-engine-wifi-hidl.so
 vendor/lib64/libkeystore-wifi-hidl.so
 vendor/lib64/libqtikeymaster4.so
-vendor/lib64/libkeymaster_messages.so
 
 # Latency
 -system_ext/framework/vendor.qti.hardware.data.latency-V1.0-java.jar
@@ -1228,7 +1182,6 @@ vendor/lib/libOmxSwVdec.so
 vendor/lib/libOmxSwVencMpeg4.so
 vendor/lib/libOmxVdec.so
 vendor/lib/libOmxVenc.so
--vendor/lib/libplatformconfig.so
 vendor/lib/libstagefrighthw.so
 vendor/lib64/libc2dcolorconvert.so
 vendor/lib64/libmm-omxcore.so
@@ -1242,7 +1195,6 @@ vendor/lib64/libOmxSwVdec.so
 vendor/lib64/libOmxSwVencMpeg4.so
 vendor/lib64/libOmxVdec.so
 vendor/lib64/libOmxVenc.so
--vendor/lib64/libplatformconfig.so
 vendor/lib64/libstagefrighthw.so
 
 # NFC
@@ -2027,8 +1979,6 @@ vendor/etc/init/android.hardware.thermal@2.0-service.qti.rc
 vendor/etc/init/init_thermal-engine.rc
 vendor/etc/thermal-engine.conf
 -vendor/etc/vintf/manifest/android.hardware.thermal@2.0-service.qti.xml
-vendor/lib/libthermalclient.so
-vendor/lib64/libthermalclient.so
 
 # Time
 -vendor/app/TimeService/TimeService.apk
@@ -2184,8 +2134,6 @@ system_ext/apex/com.android.vndk.v30.apex
 system_ext/app/com.qualcomm.qti.services.systemhelper/lib/arm64/libsystemhelper_jni.so
 -system_ext/app/DeviceInfo/DeviceInfo.apk
 -system_ext/app/DynamicDDSService/DynamicDDSService.apk
--system_ext/app/FMRadio/FMRadio.apk
-system_ext/app/FMRadio/lib/arm64/libqcomfm_jni.so
 -system_ext/app/GmsEEAType4cIntegration/GmsEEAType4cIntegration.apk
 -system_ext/app/GmsSampleIntegration/GmsSampleIntegration.apk
 -system_ext/app/ImsRcsService/ImsRcsService.apk
