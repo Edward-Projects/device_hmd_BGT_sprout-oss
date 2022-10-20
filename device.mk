@@ -13,6 +13,8 @@ $(call inherit-product, frameworks/native/build/phone-xhdpi-6144-dalvik-heap.mk)
 # Get non-open-source specific aspects
 $(call inherit-product, vendor/hmd/BGT_sprout/BGT_sprout-vendor.mk)
 
+BGT_PREBUILT := device/hmd/BGT_sprout-prebuilt
+
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
     $(LOCAL_PATH)/overlay \
@@ -254,6 +256,10 @@ PRODUCT_PACKAGES += \
 # IRSC
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/sec_config:$(TARGET_COPY_OUT_VENDOR)/etc/sec_config
+
+# Kernel
+PRODUCT_COPY_FILES += \
+    $(BGT_PREBUILT)/kernel/dtb.img:dtb.img
 
 # Lights
 PRODUCT_PACKAGES += \
