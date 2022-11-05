@@ -239,14 +239,6 @@ vendor/etc/init/android.hardware.boot@1.1-service.rc
 vendor/etc/vintf/manifest/android.hardware.boot@1.1.xml
 
 # Camera
-system_ext/lib/vendor.qti.hardware.scve.objecttracker@1.0-adapter-helper.so
-system_ext/lib/vendor.qti.hardware.scve.objecttracker@1.0.so
-system_ext/lib/vendor.qti.hardware.scve.panorama@1.0-adapter-helper.so
-system_ext/lib/vendor.qti.hardware.scve.panorama@1.0.so
-system_ext/lib64/vendor.qti.hardware.scve.objecttracker@1.0-adapter-helper.so
-system_ext/lib64/vendor.qti.hardware.scve.objecttracker@1.0.so
-system_ext/lib64/vendor.qti.hardware.scve.panorama@1.0-adapter-helper.so
-system_ext/lib64/vendor.qti.hardware.scve.panorama@1.0.so
 vendor/bin/hw/android.hardware.camera.provider@2.4-service_64
 vendor/etc/init/android.hardware.camera.provider@2.4-service_64.rc
 vendor/lib/camera/components/com.qti.eisv2.so
@@ -925,20 +917,6 @@ vendor/bin/hw/android.hardware.gatekeeper@1.0-service-qti
 vendor/etc/init/android.hardware.gatekeeper@1.0-service-qti.rc
 
 # GNSS
-system_ext/lib/vendor.qti.gnss@1.0.so
-system_ext/lib/vendor.qti.gnss@1.1.so
-system_ext/lib/vendor.qti.gnss@1.2.so
-system_ext/lib/vendor.qti.gnss@2.0.so
-system_ext/lib/vendor.qti.gnss@2.1.so
-system_ext/lib/vendor.qti.gnss@3.0.so
-system_ext/lib/vendor.qti.gnss@4.0.so
-system_ext/lib64/vendor.qti.gnss@1.0.so
-system_ext/lib64/vendor.qti.gnss@1.1.so
-system_ext/lib64/vendor.qti.gnss@1.2.so
-system_ext/lib64/vendor.qti.gnss@2.0.so
-system_ext/lib64/vendor.qti.gnss@2.1.so
-system_ext/lib64/vendor.qti.gnss@3.0.so
-system_ext/lib64/vendor.qti.gnss@4.0.so
 vendor/bin/hw/android.hardware.gnss@2.1-service-qti
 vendor/bin/loc_launcher
 vendor/bin/lowi-server
@@ -1094,7 +1072,6 @@ lib/libmedia_codeclist.so
 lib/libstagefright_bufferpool@2.0.1.so
 lib/libstagefright_codecbase.so
 lib/libstagefright_framecapture_utils.so
-lib/libstagefright_wfd.so
 lib64/libmedia_codeclist.so
 lib64/libstagefright_bufferpool@2.0.1.so
 lib64/libstagefright_codecbase.so
