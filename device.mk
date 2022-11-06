@@ -9,6 +9,8 @@ BOARD_BUILD_SUPER_IMAGE := true
 BOARD_BUILD_SUPER_IMAGE_BY_DEFAULT := true
 PRODUCT_SHIPPING_API_LEVEL := 29
 
+BGT_PREBUILT := device/hmd/BGT_sprout-prebuilt
+
 # Enable virtual A/B OTA
 $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
 
@@ -353,6 +355,10 @@ PRODUCT_PACKAGES += \
 # Soong Namespaces
 PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH)
+
+# Kernel
+PRODUCT_COPY_FILES += \
+    $(BGT_PREBUILT)/kernel/dtb.img:dtb.img
 
 # Telephony
 PRODUCT_PACKAGES += \
