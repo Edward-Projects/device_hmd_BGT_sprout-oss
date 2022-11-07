@@ -252,7 +252,8 @@ PRODUCT_PACKAGES += \
 
 # HIDL
 PRODUCT_PACKAGES += \
-    libhwbinder.vendor
+    libhwbinder.vendor \
+    libhidltransport.vendor \
 
 # IPACM
 PRODUCT_PACKAGES += \
